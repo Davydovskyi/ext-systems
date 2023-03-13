@@ -4,11 +4,17 @@ import java.io.*;
 import java.net.Socket;
 
 public class Client {
-    public static void main(String[] args) throws IOException {
-        sendRequest();
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            new SimpleClient().start();
+        }
     }
+}
 
-    private static void sendRequest() throws IOException {
+class SimpleClient extends Thread {
+    //TODO add logger
+    @Override
+    public void run() {
         try (Socket socket = new Socket("127.0.0.1", 25225);
              BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
@@ -19,6 +25,8 @@ public class Client {
 
             String answer = reader.readLine();
             System.out.println("client got string: " + answer);
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
         }
     }
 }

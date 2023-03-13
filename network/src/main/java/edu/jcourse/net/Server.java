@@ -10,12 +10,22 @@ public class Server {
             System.out.println("server is started");
             while (true) {
                 Socket client = socket.accept();
-                handleRequest(client);
+                new SimpleServer(client).start();
             }
         }
     }
+}
 
-    private static void handleRequest(Socket client) throws IOException {
+//TODO add logger
+class SimpleServer extends Thread {
+
+    private final Socket client;
+
+    public SimpleServer(Socket client) {
+        this.client = client;
+    }
+
+    private void handleRequest() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
              BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()))) {
             StringBuilder builder = new StringBuilder("Hello, ");
@@ -26,6 +36,13 @@ public class Server {
             writer.newLine();
             writer.flush();
             client.close();
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
         }
+    }
+
+    @Override
+    public void run() {
+        handleRequest();
     }
 }
