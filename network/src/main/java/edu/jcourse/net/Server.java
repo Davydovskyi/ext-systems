@@ -28,11 +28,18 @@ class SimpleServer extends Thread {
     private void handleRequest() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
              BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()))) {
-            StringBuilder builder = new StringBuilder("Hello, ");
-            String userName = reader.readLine();
-            System.out.println("server got string: " + userName);
-            builder.append(userName);
-            writer.write(builder.toString());
+
+            String request = reader.readLine();
+            String[] strings = request.split("\\s+");
+
+            String command = strings[0];
+            String userName = strings[1];
+            System.out.println("server got string 1: " + command);
+            System.out.println("server got string 2: " + userName);
+
+            StringBuilder response = new StringBuilder("Hello, ");
+            response.append(userName);
+            writer.write(response.toString());
             writer.newLine();
             writer.flush();
             client.close();
