@@ -5,7 +5,8 @@ INSERT INTO cr_street(street_code, street_name)
 VALUES (1, 'Сампмсоньевский проспект');
 
 INSERT INTO cr_address (district_code, street_code, building, extension, apartment)
-VALUES (1, 1, '10', '2', '121');
+VALUES (1, 1, '10', '2', '121'),
+       (1, 1, '274', null, '4');
 
 INSERT INTO cr_person (sur_name, given_name, patronymic, date_of_birth, passport_series, passport_number, passport_date,
                        c_certificate_number, c_certificate_date)
@@ -16,6 +17,6 @@ VALUES ('Васильев', 'Павел', 'Николаевич', '1995-03-18', 
 
 INSERT INTO cr_address_person(address_id, person_id, start_date, end_date)
 VALUES (1, 1, '2014-10-12', null),
-       (1, 2, '2014-10-12', null),
+       (2, 2, '2014-10-12', null),
        (1, 3, '2016-02-05', null),
        (1, 4, '2018-12-11', null);

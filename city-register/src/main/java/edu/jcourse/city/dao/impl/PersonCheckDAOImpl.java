@@ -6,10 +6,7 @@ import edu.jcourse.city.domain.PersonRequest;
 import edu.jcourse.city.domain.PersonResponse;
 import edu.jcourse.city.exception.PersonCheckDAOException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class PersonCheckDAOImpl implements PersonCheckDAO {
 
@@ -17,20 +14,47 @@ public class PersonCheckDAOImpl implements PersonCheckDAO {
             "FROM cr_address_person ap " +
             "         INNER JOIN cr_address ad ON ap.address_id = ad.address_id " +
             "         INNER JOIN cr_person pr ON ap.person_id = pr.person_id " +
-            "WHERE upper(pr.sur_name) = upper(?) " +
+            "WHERE CURRENT_DATE >= ap.start_date " +
+            "  and (CURRENT_DATE <= ap.end_date or ap.end_date is null) " +
+            "  and upper(pr.sur_name) = upper(?) " +
             "  and upper(pr.given_name) = upper(?) " +
             "  and upper(pr.patronymic) = upper(?) " +
             "  and pr.date_of_birth = ? " +
             "  and ad.street_code = ? " +
-            "  and upper(ad.building) = upper(?) " +
-            "  and upper(ad.extension) = upper(?) " +
-            "  and upper(ad.apartment) = upper(?)";
+            "  and upper(ad.building) = upper(?) ";
 
     public PersonResponse checkPerson(PersonRequest request) throws PersonCheckDAOException {
         PersonResponse response = new PersonResponse();
 
+        String sql = SQL_REQUEST;
+        if (request.getExtension() != null) {
+            sql += "and upper(ad.extension) = upper(?) ";
+        } else {
+            sql += "and ad.extension is null ";
+        }
+
+        if (request.getApartment() != null) {
+            sql += "and upper(ad.apartment) = upper(?)";
+        } else {
+            sql += "and ad.apartment is null";
+        }
+
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            int index = 1;
+            preparedStatement.setString(index++, request.getSurName());
+            preparedStatement.setString(index++, request.getGivenName());
+            preparedStatement.setString(index++, request.getPatronymic());
+            preparedStatement.setDate(index++, Date.valueOf(request.getDateOfBirth()));
+            preparedStatement.setInt(index++, request.getStreetCode());
+            preparedStatement.setString(index++, request.getBuilding());
+            if (request.getExtension() != null) {
+                preparedStatement.setString(index++, request.getExtension());
+            }
+            if (request.getApartment() != null) {
+                preparedStatement.setString(index, request.getApartment());
+            }
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {

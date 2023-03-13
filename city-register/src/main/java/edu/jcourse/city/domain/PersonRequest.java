@@ -7,6 +7,7 @@ public class PersonRequest {
     private String givenName;
     private String patronymic;
     private LocalDate dateOfBirth;
+    private Integer streetCode;
     private String building;
     private String extension;
     private String apartment;
@@ -41,6 +42,14 @@ public class PersonRequest {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Integer getStreetCode() {
+        return streetCode;
+    }
+
+    public void setStreetCode(Integer streetCode) {
+        this.streetCode = streetCode;
     }
 
     public String getBuilding() {
