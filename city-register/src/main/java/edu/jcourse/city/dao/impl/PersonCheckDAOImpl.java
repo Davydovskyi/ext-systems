@@ -13,7 +13,18 @@ import java.sql.SQLException;
 
 public class PersonCheckDAOImpl implements PersonCheckDAO {
 
-    private static final String SQL_REQUEST = "";
+    private static final String SQL_REQUEST = "SELECT temporal " +
+            "FROM cr_address_person ap " +
+            "         INNER JOIN cr_address ad ON ap.address_id = ad.address_id " +
+            "         INNER JOIN cr_person pr ON ap.person_id = pr.person_id " +
+            "WHERE upper(pr.sur_name) = upper(?) " +
+            "  and upper(pr.given_name) = upper(?) " +
+            "  and upper(pr.patronymic) = upper(?) " +
+            "  and pr.date_of_birth = ? " +
+            "  and ad.street_code = ? " +
+            "  and upper(ad.building) = upper(?) " +
+            "  and upper(ad.extension) = upper(?) " +
+            "  and upper(ad.apartment) = upper(?)";
 
     public PersonResponse checkPerson(PersonRequest request) throws PersonCheckDAOException {
         PersonResponse response = new PersonResponse();
