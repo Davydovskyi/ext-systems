@@ -10,12 +10,25 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
 @WebServlet(name = "CheckPersonServlet", urlPatterns = {"/checkPerson"})
 public class CheckPersonServlet extends HttpServlet {
+
+    private static final Logger logger = LoggerFactory.getLogger(CheckPersonServlet.class);
+
+    private transient PersonCheckDAO dao;
+
+    @Override
+    public void init() throws ServletException {
+        logger.info("Servlet is created");
+        dao = DAOProvider.getInstance().getPersonCheckDAO();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
@@ -33,7 +46,6 @@ public class CheckPersonServlet extends HttpServlet {
         request.setApartment("121");
 
         try {
-            PersonCheckDAO dao = DAOProvider.getInstance().getPersonCheckDAO();
             PersonResponse response = dao.checkPerson(request);
             if (response.isRegistered()) {
                 resp.getWriter().println("Registered");

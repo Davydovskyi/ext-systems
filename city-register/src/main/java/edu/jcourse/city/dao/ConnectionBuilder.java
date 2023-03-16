@@ -8,6 +8,9 @@ import java.sql.SQLException;
 
 public class ConnectionBuilder {
 
+    private ConnectionBuilder() {
+    }
+
     public static Connection getConnection() throws SQLException {
         try {
             Class.forName("org.postgresql.Driver");
