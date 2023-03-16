@@ -23,6 +23,14 @@ public class PersonCheckDAOImpl implements PersonCheckDAO {
             "  and ad.street_code = ? " +
             "  and upper(ad.building) = upper(?) ";
 
+    private ConnectionBuilder connectionBuilder;
+
+    @Override
+    public void setConnectionBuilder(ConnectionBuilder connectionBuilder) {
+        this.connectionBuilder = connectionBuilder;
+    }
+
+    @Override
     public PersonResponse checkPerson(PersonRequest request) throws PersonCheckDAOException {
         PersonResponse response = new PersonResponse();
 
@@ -70,6 +78,6 @@ public class PersonCheckDAOImpl implements PersonCheckDAO {
     }
 
     private Connection getConnection() throws SQLException {
-        return ConnectionBuilder.getConnection();
+        return connectionBuilder.getConnection();
     }
 }

@@ -2,6 +2,7 @@ package edu.jcourse.city.web;
 
 import edu.jcourse.city.dao.DAOProvider;
 import edu.jcourse.city.dao.PersonCheckDAO;
+import edu.jcourse.city.dao.impl.PoolConnectionBuilder;
 import edu.jcourse.city.domain.PersonRequest;
 import edu.jcourse.city.domain.PersonResponse;
 import edu.jcourse.city.exception.PersonCheckDAOException;
@@ -27,6 +28,7 @@ public class CheckPersonServlet extends HttpServlet {
     public void init() throws ServletException {
         logger.info("Servlet is created");
         dao = DAOProvider.getInstance().getPersonCheckDAO();
+        dao.setConnectionBuilder(new PoolConnectionBuilder());
     }
 
     @Override

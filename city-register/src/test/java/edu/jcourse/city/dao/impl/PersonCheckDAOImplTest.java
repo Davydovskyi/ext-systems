@@ -19,6 +19,7 @@ class PersonCheckDAOImplTest {
                 LocalDate.of(1995, 3, 18), 1, "10", "2", "121");
 
         PersonCheckDAO dao = DAOProvider.getInstance().getPersonCheckDAO();
+        dao.setConnectionBuilder(new DirectConnectionBuilder());
         PersonResponse response = dao.checkPerson(request);
 
         Assertions.assertTrue(response.isRegistered());
@@ -31,6 +32,7 @@ class PersonCheckDAOImplTest {
                 LocalDate.of(1997, 8, 21), 1, "274", null, "18");
 
         PersonCheckDAO dao = DAOProvider.getInstance().getPersonCheckDAO();
+        dao.setConnectionBuilder(new DirectConnectionBuilder());
         PersonResponse response = dao.checkPerson(request);
 
         Assertions.assertTrue(response.isRegistered());
