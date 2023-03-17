@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-//TODO add logger
 public class PoolConnectionBuilder implements ConnectionBuilder {
 
     private static final Logger logger = LoggerFactory.getLogger(PoolConnectionBuilder.class);
@@ -28,16 +27,5 @@ public class PoolConnectionBuilder implements ConnectionBuilder {
 
     public Connection getConnection() throws SQLException {
         return dataSource.getConnection();
-
-//        try {
-//            Class.forName("org.postgresql.Driver");
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        return DriverManager.getConnection(
-//                Config.getProperties(Config.DB_URL),
-//                Config.getProperties(Config.DB_LOGIN),
-//                Config.getProperties(Config.DB_PASSWORD)
-//        );
     }
 }

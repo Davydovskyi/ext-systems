@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(name = "CheckPersonServlet", urlPatterns = {"/checkPerson"})
 public class CheckPersonServlet extends HttpServlet {
@@ -35,17 +36,16 @@ public class CheckPersonServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
 
-        String surname = req.getParameter("surname");
-
         PersonRequest request = new PersonRequest();
-        request.setSurName(surname);
-        request.setGivenName("Павел");
-        request.setPatronymic("Николаевич");
-        request.setDateOfBirth(LocalDate.of(1995, 3, 18));
-        request.setStreetCode(1);
-        request.setBuilding("10");
-        request.setExtension("2");
-        request.setApartment("121");
+        request.setSurName(req.getParameter("surname"));
+        request.setGivenName(req.getParameter("givenName"));
+        request.setPatronymic(req.getParameter("patronymic"));
+        LocalDate dateOfBirth = LocalDate.parse(req.getParameter("dateOfBirth"), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        request.setDateOfBirth(dateOfBirth);
+        request.setStreetCode(Integer.parseInt(req.getParameter("streetCode")));
+        request.setBuilding(req.getParameter("building"));
+        request.setExtension(req.getParameter("extension"));
+        request.setApartment(req.getParameter("apartment"));
 
         try {
             PersonResponse response = dao.checkPerson(request);
