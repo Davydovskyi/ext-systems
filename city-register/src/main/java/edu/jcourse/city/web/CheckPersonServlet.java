@@ -22,7 +22,6 @@ import java.time.format.DateTimeFormatter;
 public class CheckPersonServlet extends HttpServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(CheckPersonServlet.class);
-
     private transient PersonCheckDAO dao;
 
     @Override

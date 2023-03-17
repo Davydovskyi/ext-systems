@@ -2,9 +2,9 @@
 <Context>
     <Resource
             driverClassName="org.postgresql.Driver"
-            maxActive="4"
+            maxTotal="4"
             maxIdle="2"
-            maxWait="5000"
+            maxWaitMillis="5000"
             name="jdbc/cityRegister"
             username="postgres"
             password="postgres"

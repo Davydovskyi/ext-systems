@@ -1,13 +1,17 @@
 package edu.jcourse.city.web;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
+import edu.jcourse.city.domain.PersonResponse;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 
 @Path("/check")
 public class CheckPersonService {
 
     @GET
-    public String checkPerson() {
-        return "Simple String";
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public PersonResponse checkPerson(@PathParam("id") int id,
+                                      @QueryParam("name") String name) {
+        return new PersonResponse();
     }
 }
