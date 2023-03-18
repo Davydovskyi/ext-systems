@@ -6,7 +6,6 @@ import edu.jcourse.city.dao.impl.PoolConnectionBuilder;
 import edu.jcourse.city.domain.PersonRequest;
 import edu.jcourse.city.domain.PersonResponse;
 import edu.jcourse.city.exception.PersonCheckDAOException;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,14 +24,14 @@ public class CheckPersonServlet extends HttpServlet {
     private transient PersonCheckDAO dao;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         logger.info("Servlet is created");
         dao = DAOProvider.getInstance().getPersonCheckDAO();
         dao.setConnectionBuilder(new PoolConnectionBuilder());
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
 
         PersonRequest request = new PersonRequest();

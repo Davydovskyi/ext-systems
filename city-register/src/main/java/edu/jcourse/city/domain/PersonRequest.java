@@ -1,11 +1,14 @@
 package edu.jcourse.city.domain;
 
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.time.LocalDate;
 
 public class PersonRequest {
     private String surName;
     private String givenName;
     private String patronymic;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate dateOfBirth;
     private Integer streetCode;
     private String building;
@@ -74,5 +77,20 @@ public class PersonRequest {
 
     public void setApartment(String apartment) {
         this.apartment = apartment;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder(getClass().getSimpleName());
+        sb.append("{surName='").append(surName).append('\'');
+        sb.append(", givenName='").append(givenName).append('\'');
+        sb.append(", patronymic='").append(patronymic).append('\'');
+        sb.append(", dateOfBirth=").append(dateOfBirth);
+        sb.append(", streetCode=").append(streetCode);
+        sb.append(", building='").append(building).append('\'');
+        sb.append(", extension='").append(extension).append('\'');
+        sb.append(", apartment='").append(apartment).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

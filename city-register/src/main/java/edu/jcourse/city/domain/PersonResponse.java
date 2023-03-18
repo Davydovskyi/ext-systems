@@ -20,4 +20,13 @@ public class PersonResponse {
     public void setTemporal(boolean temporal) {
         this.temporal = temporal;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder(getClass().getSimpleName());
+        sb.append("{registered=").append(registered);
+        sb.append(", temporal=").append(temporal);
+        sb.append('}');
+        return sb.toString();
+    }
 }
