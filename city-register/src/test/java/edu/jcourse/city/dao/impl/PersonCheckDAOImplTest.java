@@ -29,7 +29,7 @@ class PersonCheckDAOImplTest {
     @Test
     void checkPerson2() throws PersonCheckDAOException {
         PersonRequest request = createRequest("Васильева", "Ирина", "Петровна",
-                LocalDate.of(1997, 8, 21), 1, "274", null, "18");
+                LocalDate.of(1997, 8, 21), 1, "10", "2", "121");
 
         PersonCheckDAO dao = DAOProvider.getInstance().getPersonCheckDAO();
         dao.setConnectionBuilder(new DirectConnectionBuilder());
