@@ -51,7 +51,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- For ReST -->
+        <!-- For ReST  SERVER-->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
@@ -71,7 +71,7 @@
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
-            <version>4.0.1</version>
+            <version>4.0.2</version>
         </dependency>
 
         <!-- To convert from Objects to JSON-->
