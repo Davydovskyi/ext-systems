@@ -12,9 +12,9 @@ public class DirectConnectionBuilder implements ConnectionBuilder {
     @Override
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
-                Config.getProperties(Config.DB_URL),
-                Config.getProperties(Config.DB_LOGIN),
-                Config.getProperties(Config.DB_PASSWORD)
+                Config.getProperty(Config.DB_URL),
+                Config.getProperty(Config.DB_LOGIN),
+                Config.getProperty(Config.DB_PASSWORD)
         );
     }
 }
