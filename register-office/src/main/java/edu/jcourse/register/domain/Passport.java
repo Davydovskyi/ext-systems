@@ -16,7 +16,7 @@ public class Passport {
     private String series;
     @Column(name = "number")
     private String number;
-    @Column(name = "issue_date")
+    @Column(name = "date_issue")
     private LocalDate issueDate;
     @Column(name = "issue_department")
     private String issueDepartment;

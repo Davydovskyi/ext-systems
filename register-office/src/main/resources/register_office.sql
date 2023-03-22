@@ -1,9 +1,10 @@
-DROP TABLE if EXISTS ro_person;
 DROP TABLE if EXISTS ro_passport;
+DROP TABLE if EXISTS ro_person;
 
 CREATE TABLE ro_person
 (
     person_id     SERIAL,
+    sex           smallint     not null,
     first_name    varchar(100) not null,
     last_name     varchar(100) not null,
     patronymic    varchar(100),
@@ -22,3 +23,4 @@ CREATE TABLE ro_passport
     PRIMARY KEY (passport_id),
     FOREIGN KEY (person_id) REFERENCES ro_person (person_id) ON DELETE RESTRICT
 )
+
