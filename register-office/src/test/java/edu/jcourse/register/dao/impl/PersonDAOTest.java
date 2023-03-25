@@ -19,13 +19,13 @@ class PersonDAOTest {
             System.out.println("Class for sex:" + person.getClass().getSimpleName());
             System.out.println("Passports:" + person.getPassports().size());
             System.out.println("Birthday:" + person.getBirthCertificate());
-            if (person instanceof PersonMale) {
-                System.out.println("Birth Cert:" + ((PersonMale) person).getBirthCertificates().size());
-                System.out.println("Marriage Cert:" + ((PersonMale) person).getMarriageCertificates().size());
-            } else {
-                System.out.println("Birth Cert:" + ((PersonFemale) person).getBirthCertificates().size());
-                System.out.println("Marriage Cert:" + ((PersonFemale) person).getMarriageCertificates().size());
-            }
+//            if (person instanceof PersonMale) {
+//                System.out.println("Birth Cert:" + ((PersonMale) person).getBirthCertificates().size());
+//                System.out.println("Marriage Cert:" + ((PersonMale) person).getMarriageCertificates().size());
+//            } else {
+//                System.out.println("Birth Cert:" + ((PersonFemale) person).getBirthCertificates().size());
+//                System.out.println("Marriage Cert:" + ((PersonFemale) person).getMarriageCertificates().size());
+//            }
         });
     }
 }

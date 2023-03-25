@@ -9,6 +9,17 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "sex", discriminatorType = DiscriminatorType.INTEGER)
+
+// (используя LEFT JOIN FETCH запрос в базу будет один, вместо 3-4)
+@NamedQueries({
+        @NamedQuery(name = "Person.findPersons",
+                query = "SELECT p FROM Person p " +
+                        "LEFT JOIN FETCH p.passports ps " +
+                        "LEFT JOIN FETCH p.birthCertificate bs " +
+                        "WHERE p.personId = :personID"
+        )
+})
+
 public class Person {
 
     @Id

@@ -16,8 +16,10 @@ public class PersonDAO {
         entityManager = factory.createEntityManager();
     }
 
-
     public List<Person> findPersons() {
-        return entityManager.createQuery("FROM Person").getResultList();
+        return entityManager
+                .createNamedQuery("Person.findPersons", Person.class)
+                .setParameter("personID", 1)
+                .getResultList();
     }
 }
