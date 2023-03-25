@@ -1,6 +1,8 @@
 package edu.jcourse.register.dao.impl;
 
 import edu.jcourse.register.domain.Person;
+import edu.jcourse.register.domain.PersonFemale;
+import edu.jcourse.register.domain.PersonMale;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,9 +15,17 @@ class PersonDAOTest {
         List<Person> persons = personDAO.findPersons();
 
         persons.forEach(person -> {
-            System.out.println(person.getFirstName());
-            System.out.println(person.getClass().getSimpleName());
-            System.out.println(person.getPassports().size());
+            System.out.println("Name:" + person.getFirstName());
+            System.out.println("Class for sex:" + person.getClass().getSimpleName());
+            System.out.println("Passports:" + person.getPassports().size());
+            System.out.println("Birthday:" + person.getBirthCertificate());
+            if (person instanceof PersonMale) {
+                System.out.println("Birth Cert:" + ((PersonMale) person).getBirthCertificates().size());
+                System.out.println("Marriage Cert:" + ((PersonMale) person).getMarriageCertificates().size());
+            } else {
+                System.out.println("Birth Cert:" + ((PersonFemale) person).getBirthCertificates().size());
+                System.out.println("Marriage Cert:" + ((PersonFemale) person).getMarriageCertificates().size());
+            }
         });
     }
 }
