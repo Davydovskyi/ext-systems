@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dao" class="edu.jcourse.register.dao.impl.MarriageDAOImpl">
+    </bean>
+
+    <bean id="manager" class="edu.jcourse.register.business.impl.MarriageManagerImpl">
+    </bean>
+
+    <bean id="controller" class="edu.jcourse.register.rest.MarriageController">
+    </bean>
+
+</beans>

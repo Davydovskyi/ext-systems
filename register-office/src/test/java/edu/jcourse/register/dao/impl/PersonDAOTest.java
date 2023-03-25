@@ -1,8 +1,6 @@
 package edu.jcourse.register.dao.impl;
 
 import edu.jcourse.register.domain.Person;
-import edu.jcourse.register.domain.PersonFemale;
-import edu.jcourse.register.domain.PersonMale;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
