@@ -14,5 +14,6 @@ public class Starter {
         MarriageRequest request = new MarriageRequest();
         request.setMarriageCertificateNumber("1234567");
         MarriageResponse response = controller.findMarriageCertificate(request);
+        System.out.println(response);
     }
 }

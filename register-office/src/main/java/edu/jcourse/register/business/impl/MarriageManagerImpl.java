@@ -12,24 +12,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service(value = "marriageService")
 public class MarriageManagerImpl implements MarriageManager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MarriageManagerImpl.class);
 
     private final DAOProvider daoProvider = DAOProvider.getInstance();
-    private MarriageDAO marriageDAO;
-    @Autowired
-    private PersonDAO personDAO;
+    private final MarriageDAO marriageDAO = daoProvider.getMarriageDAO();
 
     @Autowired
-    public void setMarriageDAO(MarriageDAO marriageDAO) {
-        this.marriageDAO = marriageDAO;
-    }
+    private PersonDAO personDAO;
 
     @Override
     public MarriageResponse findMarriageCertificate(MarriageRequest request) {
         LOGGER.info("findMarriageCertificate called");
+
+//        personDAO.findPersons();
+
         MarriageCertificate marriageCertificate = marriageDAO.findMarriageCertificate(request);
         MarriageResponse response = new MarriageResponse();
         if (marriageCertificate == null) {
