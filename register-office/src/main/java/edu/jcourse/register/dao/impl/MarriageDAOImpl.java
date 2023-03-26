@@ -8,7 +8,9 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MarriageDAOImpl implements MarriageDAO {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MarriageDAOImpl.class);
