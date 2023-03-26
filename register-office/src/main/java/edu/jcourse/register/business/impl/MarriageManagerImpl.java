@@ -14,13 +14,21 @@ public class MarriageManagerImpl implements MarriageManager {
     private static final Logger LOGGER = LoggerFactory.getLogger(MarriageManagerImpl.class);
 
     private final DAOProvider daoProvider = DAOProvider.getInstance();
-    private MarriageDAO marriageDAO = daoProvider.getMarriageDAO();
+    private final MarriageDAO marriageDAO = daoProvider.getMarriageDAO();
 
     @Override
     public MarriageResponse findMarriageCertificate(MarriageRequest request) {
         LOGGER.info("findMarriageCertificate called");
         MarriageCertificate marriageCertificate = marriageDAO.findMarriageCertificate(request);
+        MarriageResponse response = new MarriageResponse();
+        if (marriageCertificate == null) {
+            return response;
+        }
 
-        return new MarriageResponse();
+        response.setExists(true);
+        response.setActive(marriageCertificate.isActive());
+        response.setEndData(marriageCertificate.getEndDate());
+
+        return response;
     }
 }

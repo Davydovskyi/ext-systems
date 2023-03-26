@@ -6,5 +6,4 @@ import edu.jcourse.register.view.MarriageRequest;
 public interface MarriageDAO {
 
     MarriageCertificate findMarriageCertificate(MarriageRequest request);
-
 }
