@@ -1,15 +1,13 @@
 package edu.jcourse.register.dao;
 
-import edu.jcourse.register.dao.impl.MarriageDAOImpl;
-
 public class DAOProvider {
 
     private static DAOProvider instance;
 
-    private final MarriageDAO marriageDAO;
+    private MarriageDAO marriageDAO;
 
     private DAOProvider() {
-        marriageDAO = new MarriageDAOImpl();
+//        marriageDAO = new MarriageDAOImpl();
     }
 
     public static DAOProvider getInstance() {

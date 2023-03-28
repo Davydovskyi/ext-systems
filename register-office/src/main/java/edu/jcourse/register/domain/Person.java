@@ -15,8 +15,7 @@ import java.util.List;
         @NamedQuery(name = "Person.findPersons",
                 query = "SELECT p FROM Person p " +
                         "LEFT JOIN FETCH p.passports ps " +
-                        "LEFT JOIN FETCH p.birthCertificate bs " +
-                        "WHERE p.personId = :personID"
+                        "LEFT JOIN FETCH p.birthCertificate bs "
         )
 })
 

@@ -16,7 +16,7 @@ class MarriageDAOImplTest {
         MarriageRequest request = new MarriageRequest();
         request.setMarriageCertificateNumber("1234567");
 
-        MarriageCertificate marriageCertificate = dao.findMarriageCertificate(request);
-        System.out.println(marriageCertificate);
+//        MarriageCertificate marriageCertificate = dao.findMarriageCertificate(request);
+//        System.out.println(marriageCertificate);
     }
 }

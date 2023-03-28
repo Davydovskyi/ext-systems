@@ -1,11 +1,11 @@
 package edu.jcourse.register.business.impl;
 
 import edu.jcourse.register.business.MarriageManager;
-import edu.jcourse.register.dao.DAOProvider;
 import edu.jcourse.register.dao.MarriageDAO;
 import edu.jcourse.register.dao.impl.PersonDAO;
 import edu.jcourse.register.domain.MarriageCertificate;
 import edu.jcourse.register.domain.Person;
+import edu.jcourse.register.domain.PersonFemale;
 import edu.jcourse.register.domain.PersonMale;
 import edu.jcourse.register.view.MarriageRequest;
 import edu.jcourse.register.view.MarriageResponse;
@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service(value = "marriageService")
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -25,9 +26,9 @@ public class MarriageManagerImpl implements MarriageManager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MarriageManagerImpl.class);
 
-    private final DAOProvider daoProvider = DAOProvider.getInstance();
+    //    private final DAOProvider daoProvider = DAOProvider.getInstance();
     @Autowired
-    private final MarriageDAO marriageDAO = daoProvider.getMarriageDAO();
+    private MarriageDAO marriageDAO;
     @Autowired
     private PersonDAO personDAO;
 
@@ -36,26 +37,51 @@ public class MarriageManagerImpl implements MarriageManager {
     public MarriageResponse findMarriageCertificate(MarriageRequest request) {
         LOGGER.info("findMarriageCertificate called");
 
-        personDAO.findPersons();
+        personDAO.addPerson(getPerson(1));
+        personDAO.addPerson(getPerson(2));
 
-        Person person = new PersonMale();
-        person.setFirstName("1");
-        person.setLastName("2");
-        person.setPatronymic("3");
-        person.setDateOfBirth(LocalDate.of(1991, 3, 12));
+        MarriageCertificate marriageCertificate1 = getMarriageCertificate();
+        marriageDAO.saveAndFlush(marriageCertificate1);
 
-        personDAO.addPerson(person);
+        List<MarriageCertificate> all = marriageDAO.findAll();
 
-        MarriageCertificate marriageCertificate = marriageDAO.findMarriageCertificate(request);
+
+
+        MarriageCertificate marriageCertificate = null;
         MarriageResponse response = new MarriageResponse();
-        if (marriageCertificate == null) {
-            return response;
-        }
-
-        response.setExists(true);
-        response.setActive(marriageCertificate.isActive());
-        response.setEndData(marriageCertificate.getEndDate());
+//        if (marriageCertificate == null) {
+//            return response;
+//        }
+//
+//        response.setExists(true);
+//        response.setActive(marriageCertificate.isActive());
+//        response.setEndData(marriageCertificate.getEndDate());
 
         return response;
+    }
+
+    private Person getPerson(int sex) {
+        Person person = sex == 1 ? new PersonFemale() : new PersonMale();
+        person.setFirstName("1_" + sex);
+        person.setLastName("2_" + sex);
+        person.setPatronymic("3_" + sex);
+        person.setDateOfBirth(LocalDate.of(1991, 3, 12));
+        return person;
+    }
+
+    private MarriageCertificate getMarriageCertificate() {
+        MarriageCertificate certificate = new MarriageCertificate();
+        certificate.setIssueDate(LocalDate.now());
+        certificate.setNumber("12345");
+        certificate.setActive(true);
+        List<Person> persons = personDAO.findPersons();
+        persons.forEach(person -> {
+            if (person instanceof PersonMale personMale) {
+                certificate.setHusband(personMale);
+            } else {
+                certificate.setWife((PersonFemale) person);
+            }
+        });
+        return certificate;
     }
 }

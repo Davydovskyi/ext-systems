@@ -14,7 +14,6 @@ public class PersonDAO {
     public List<Person> findPersons() {
         return entityManager
                 .createNamedQuery("Person.findPersons", Person.class)
-                .setParameter("personID", 1)
                 .getResultList();
     }
 

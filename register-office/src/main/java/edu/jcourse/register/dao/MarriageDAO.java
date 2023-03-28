@@ -1,9 +1,9 @@
 package edu.jcourse.register.dao;
 
 import edu.jcourse.register.domain.MarriageCertificate;
-import edu.jcourse.register.view.MarriageRequest;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface MarriageDAO {
-
-    MarriageCertificate findMarriageCertificate(MarriageRequest request);
+@Repository
+public interface MarriageDAO extends JpaRepository<MarriageCertificate, Long> {
 }
