@@ -15,7 +15,6 @@ public class MarriageController {
     private static final Logger LOGGER = LoggerFactory.getLogger(MarriageController.class);
 
     private final BusinessProvider provider = BusinessProvider.getInstance();
-
     @Autowired
     private final MarriageManager marriageManager = provider.getMarriageManager();
 

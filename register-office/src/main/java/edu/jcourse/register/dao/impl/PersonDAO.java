@@ -17,4 +17,10 @@ public class PersonDAO {
                 .setParameter("personID", 1)
                 .getResultList();
     }
+
+    public Long addPerson(Person person) {
+        entityManager.persist(person);
+        entityManager.flush();
+        return person.getPersonId();
+    }
 }
