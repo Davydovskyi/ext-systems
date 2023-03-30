@@ -43,8 +43,16 @@ public class MarriageManagerImpl implements MarriageManager {
         MarriageCertificate marriageCertificate1 = getMarriageCertificate();
         marriageDAO.saveAndFlush(marriageCertificate1);
 
-        List<MarriageCertificate> all = marriageDAO.findAll();
+//        List<MarriageCertificate> all = marriageDAO.findAll();
 
+        List<MarriageCertificate> byNumber = marriageDAO.findByNumber("12345");
+        byNumber.forEach(m -> LOGGER.info("MC:{}", m.getMarriageCertificateId()));
+        LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>");
+        List<MarriageCertificate> byNum = marriageDAO.findByNum("98765");
+        byNum.forEach(m -> LOGGER.info("MC:{}", m.getMarriageCertificateId()));
+        LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>");
+        List<MarriageCertificate> something = marriageDAO.findSomething("98765");
+        something.forEach(m -> LOGGER.info("MC:{}", m.getMarriageCertificateId()));
 
 
         MarriageCertificate marriageCertificate = null;
@@ -72,7 +80,7 @@ public class MarriageManagerImpl implements MarriageManager {
     private MarriageCertificate getMarriageCertificate() {
         MarriageCertificate certificate = new MarriageCertificate();
         certificate.setIssueDate(LocalDate.now());
-        certificate.setNumber("12345");
+        certificate.setNumber("98765");
         certificate.setActive(true);
         List<Person> persons = personDAO.findPersons();
         persons.forEach(person -> {

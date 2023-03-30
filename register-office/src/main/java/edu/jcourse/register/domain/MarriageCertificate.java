@@ -14,7 +14,10 @@ import java.util.Objects;
                         "LEFT JOIN FETCH mc.husband h " +
                         "LEFT JOIN FETCH mc.wife w " +
                         "WHERE mc.number = :certificateNumber"
-        )
+        ),
+        @NamedQuery(name = "MarriageCertificate.findByNum",
+                query = "SELECT mc FROM MarriageCertificate mc " +
+                        "WHERE mc.number = :number")
 })
 
 public class MarriageCertificate {
