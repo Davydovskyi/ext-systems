@@ -11,7 +11,7 @@ import java.util.List;
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
     @Query("SELECT st FROM Student st WHERE st.lastName = :lastName AND " +
-            "st.firstName = : firstName AND st.middleName = :middleName AND " +
+            "st.firstName = :firstName AND st.middleName = :middleName AND " +
             "st.dateOfBirth = :dateOfBirth AND st.passportSeries = :passportSeries AND " +
             "st.passportNumber = :passportNumber AND st.passportDate = :passportDate")
     List<Student> findStudent(@Param("lastName") String lastName,

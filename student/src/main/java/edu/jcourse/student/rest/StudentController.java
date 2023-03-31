@@ -28,6 +28,6 @@ public class StudentController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public List<StudentResponse> getStudentInfo(StudentRequest request) {
-        return studentService.getStudentIngo(request);
+        return studentService.getStudentInfo(request);
     }
 }

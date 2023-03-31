@@ -9,10 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -26,16 +26,22 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public List<StudentResponse> getStudentIngo(StudentRequest request) {
-        List<Student> students = studentRepository.findStudent(request.getLastName(), request.getFirstName(),
-                request.getMiddleName(), request.getDateOfBirth(), request.getPassportSeries(),
-                request.getPassportNumber(), request.getPassportDate());
+    @Transactional
+    public List<StudentResponse> getStudentInfo(StudentRequest request) {
+        List<Student> students = studentRepository.findStudent(
+                request.getLastName(),
+                request.getFirstName(),
+                request.getMiddleName(),
+                request.getDateOfBirth(),
+                request.getPassportSeries(),
+                request.getPassportNumber(),
+                request.getPassportDate());
         if (students.isEmpty()) {
             return Collections.emptyList();
         }
 
         List<StudentDocument> documents = students.get(0).getDocuments();
-        return documents.stream().map(this::getResponse).collect(Collectors.toList());
+        return documents.stream().map(this::getResponse).toList();
     }
 
     private StudentResponse getResponse(StudentDocument document) {
