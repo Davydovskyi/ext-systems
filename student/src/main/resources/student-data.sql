@@ -1,8 +1,12 @@
 INSERT INTO sr_university(university_name)
-values ('University One');
+values ('University One'),
+       ('University Two');
 
 INSERT INTO sr_faculty(university_id, faculty_name)
-VALUES (1, 'Faculty One');
+VALUES (1, 'Faculty One'),
+       (1, 'Faculty Two'),
+       (2, 'Faculty Other One'),
+       (2, 'Faculty Other Two');
 
 INSERT INTO sr_student(last_name, first_name, middle_name, date_of_birth, passport_series, passport_number,
                        passport_date)
