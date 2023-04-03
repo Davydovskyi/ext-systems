@@ -59,4 +59,9 @@
         <property name="prefix" value="/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!-- org.springframework.web.multipart.commons.CommonsMultipartyResolver for Spring < 6-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+<!--        <property name="maxUploadSize" value="200000"/>-->
+    </bean>
 </beans>
