@@ -4,9 +4,8 @@ import edu.jcourse.student.service.StudentService;
 import edu.jcourse.student.view.StudentRequest;
 import edu.jcourse.student.view.StudentResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,10 +20,10 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    //    @POST
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.APPLICATION_JSON)
-    public List<StudentResponse> getStudentInfo(StudentRequest request) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<StudentResponse> getStudentInfo(@RequestBody StudentRequest request) {
         return studentService.getStudentInfo(request);
     }
 

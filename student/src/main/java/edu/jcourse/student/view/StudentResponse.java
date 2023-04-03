@@ -1,14 +1,17 @@
 package edu.jcourse.student.view;
 
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.time.LocalDate;
 
 public class StudentResponse {
     private String documentNumber;
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    @JsonSerialize(converter = LocalDateStringConverter.class)
+    @JsonDeserialize(converter = StringLocalDateConverter.class)
     private LocalDate documentDate;
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    @JsonSerialize(converter = LocalDateStringConverter.class)
+    @JsonDeserialize(converter = StringLocalDateConverter.class)
     private LocalDate expiredDate;
     private String universityName;
     private String facultyName;
