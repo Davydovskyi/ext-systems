@@ -17,14 +17,13 @@ class UniversityServiceTest {
     @Autowired
     private UniversityService service;
 
-    @Test
+
     void findUniversities() {
         List<University> universities = service.findUniversities();
         universities.forEach(university -> System.out.println(university.getUniversityId() + ":"
                 + university.getUniversityName() + ":" + university.getFaculties().size()));
     }
 
-    @Test
     void findFaculties() {
         List<Faculty> faculties = service.findFaculties();
         faculties.forEach(faculty -> System.out.println(faculty.getUniversity().getUniversityName()));

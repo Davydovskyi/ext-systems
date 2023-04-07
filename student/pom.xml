@@ -95,48 +95,6 @@
             <version>1.5</version>
         </dependency>
 
-        <!-- For ReST  SERVER-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.glassfish.jersey.containers</groupId>-->
-        <!--            <artifactId>jersey-container-servlet</artifactId>-->
-        <!--            <version>${jersey.version}</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.glassfish.jersey.inject</groupId>-->
-        <!--            <artifactId>jersey-hk2</artifactId>-->
-        <!--            <version>${jersey.version}</version>-->
-        <!--        </dependency>-->
-        <!-- To exclude warning in Tomcat. catalina.log-->
-        <!--        <dependency>-->
-        <!--            <groupId>jakarta.activation</groupId>-->
-        <!--            <artifactId>jakarta.activation-api</artifactId>-->
-        <!--            <version>2.1.0</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.glassfish.jaxb</groupId>-->
-        <!--            <artifactId>jaxb-runtime</artifactId>-->
-        <!--            <version>4.0.2</version>-->
-        <!--        </dependency>-->
-
-        <!-- To convert from Objects to JSON-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.glassfish.jersey.media</groupId>-->
-        <!--            <artifactId>jersey-media-json-jackson</artifactId>-->
-        <!--            <version>${jersey.version}</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>javax.xml.bind</groupId>-->
-        <!--            <artifactId>jaxb-api</artifactId>-->
-        <!--            <version>${jaxb.version}</version>-->
-        <!--        </dependency>-->
-
-        <!--Integration jersey and Spring6 -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.glassfish.jersey.ext</groupId>-->
-        <!--            <artifactId>jersey-spring6</artifactId>-->
-        <!--            <version>${jersey.version}</version>-->
-        <!--        </dependency>-->
-
         <!--Servlet-->
         <dependency>
             <groupId>jakarta.servlet</groupId>
@@ -174,16 +132,7 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.slf4j</groupId>-->
-        <!--            <artifactId>slf4j-log4j12</artifactId>-->
-        <!--            <version>${slf4j.version}</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.apache.logging.log4j</groupId>-->
-        <!--            <artifactId>log4j-core</artifactId>-->
-        <!--            <version>${log4j.version}</version>-->
-        <!--        </dependency>-->
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
