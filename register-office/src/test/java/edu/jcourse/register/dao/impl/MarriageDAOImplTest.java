@@ -1,9 +1,5 @@
 package edu.jcourse.register.dao.impl;
 
-import edu.jcourse.register.dao.DAOProvider;
-import edu.jcourse.register.dao.MarriageDAO;
-import edu.jcourse.register.domain.MarriageCertificate;
-import edu.jcourse.register.view.MarriageRequest;
 import org.junit.jupiter.api.Test;
 
 class MarriageDAOImplTest {

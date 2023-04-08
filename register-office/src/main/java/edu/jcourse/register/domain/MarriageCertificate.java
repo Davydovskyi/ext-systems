@@ -3,7 +3,6 @@ package edu.jcourse.register.domain;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Table(name = "ro_marriage_certificate")
 @Entity
@@ -95,48 +94,5 @@ public class MarriageCertificate {
 
     public void setHusband(PersonMale husband) {
         this.husband = husband;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        MarriageCertificate that = (MarriageCertificate) o;
-
-        if (active != that.active) return false;
-        if (!Objects.equals(marriageCertificateId, that.marriageCertificateId))
-            return false;
-        if (!Objects.equals(number, that.number)) return false;
-        if (!Objects.equals(issueDate, that.issueDate)) return false;
-        if (!Objects.equals(endDate, that.endDate)) return false;
-        if (!Objects.equals(wife, that.wife)) return false;
-        return Objects.equals(husband, that.husband);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = marriageCertificateId != null ? marriageCertificateId.hashCode() : 0;
-        result = 31 * result + (number != null ? number.hashCode() : 0);
-        result = 31 * result + (issueDate != null ? issueDate.hashCode() : 0);
-        result = 31 * result + (active ? 1 : 0);
-        result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
-        result = 31 * result + (wife != null ? wife.hashCode() : 0);
-        result = 31 * result + (husband != null ? husband.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder(getClass().getSimpleName());
-        sb.append("{marriageCertificateId=").append(marriageCertificateId);
-        sb.append(", number='").append(number).append('\'');
-        sb.append(", issueDate=").append(issueDate);
-        sb.append(", active=").append(active);
-        sb.append(", endDate=").append(endDate);
-        sb.append(", wife=").append(wife);
-        sb.append(", husband=").append(husband);
-        sb.append('}');
-        return sb.toString();
     }
 }

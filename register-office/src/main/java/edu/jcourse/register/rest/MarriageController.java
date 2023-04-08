@@ -1,8 +1,10 @@
 package edu.jcourse.register.rest;
 
 import edu.jcourse.register.business.MarriageManager;
+import edu.jcourse.register.view.MarriageRequest;
 import edu.jcourse.register.view.MarriageResponse;
-import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -17,13 +19,19 @@ public class MarriageController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MarriageController.class);
 
-    @Autowired
     private MarriageManager marriageManager;
 
-    @GET
+    @Autowired
+    public void setMarriageManager(MarriageManager marriageManager) {
+        this.marriageManager = marriageManager;
+    }
+
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public MarriageResponse findMarriageCertificate() {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public MarriageResponse findMarriageCertificate(MarriageRequest request) {
         LOGGER.info("findMarriageCertificate called");
-        return marriageManager.findMarriageCertificate(null);
+        LOGGER.info("request: {}", request);
+        return marriageManager.findMarriageCertificate(request);
     }
 }

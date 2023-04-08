@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 public class MarriageConfig {
     @Bean
     public PersonDAO buildPersonDAO() {
-        System.out.println("Person dao is created");
         return new PersonDAO();
     }
 }
