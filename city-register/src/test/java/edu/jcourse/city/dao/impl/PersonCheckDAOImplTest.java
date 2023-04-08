@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-// TODO доделать тесты
 class PersonCheckDAOImplTest {
 
     @Test
